@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #container{
+            display: flex;
+            flex-direction: row;
+            width:500px;
+            height:100px;
+            border: 1px solid #000;
+        }
+        .inner{
+            width:60px;
+            height:50px; 
+            background:orange;
+            border:1px solid #fff;
+        }
+        .grow0{
+            flex-grow : 0;
+        }    
+        .grow1{
+            flex-grow : 1;
+        }        
+        .grow2{
+            flex-grow : 2;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="inner grow1">1</div>
+        <div class="inner grow2">2</div>
+        <div class="inner grow0">3</div>
+        <div class="inner">4</div>
+        <div class="inner">5</div>
+        <div class="inner">6</div>
+    </div>
+</body>
+</html>
