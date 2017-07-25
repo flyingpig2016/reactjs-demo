@@ -4,6 +4,12 @@
  * @flow
  */
 
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
+
 import React, { Component } from 'react';
 import { 
   AppRegistry,  //注册
@@ -110,13 +116,20 @@ const styles3 = StyleSheet.create({
 
 //导入json数据
 var BadgeData = require('./BadgeData.json');
+var {width} = Dimensions.get('window');  //es6语法。
+var cols = 3;   //列数
+var boxWidth = 100;
+var vMargin = (width - cols * boxWidth) / (cols+1);//间距大小
+var hMargin = 25;
+
 //图片json
 class AImageDemo extends Component{
   render(){
+    console.log(width);
     return ( 
       <View style={styles4.container}>
         {/*返回6个包*/}
-        {this.renderAllBadge()}
+        {this.renderAllBadge()} 
       </View>
     )
   }
@@ -127,7 +140,6 @@ class AImageDemo extends Component{
     for(var i=0; i<BadgeData.data.length; i++){
       //去出单独的数据对象
       var badge = BadgeData.data[i]; 
-      console.log(badge.icon);
       allBadge.push( 
         <View key={i} style={styles4.outViewStyle}>
           <Image source={{uri:badge.icon}} style={styles4.imageStyle} />
@@ -152,13 +164,18 @@ const styles4 = StyleSheet.create({
   outViewStyle:{
      // 设置侧轴的对齐方式
      alignItems:'center',
+     width:boxWidth,
+     height:boxWidth,
+     marginLeft:vMargin,
+     marginTop:hMargin,
+     backgroundColor:'#ccc'
   },
   imageStyle:{
-     width:100,
+     width:80,
      height:80
   },
   mainTitleStyle : {
 
   }
 })
-AppRegistry.registerComponent('Hello', () => imgLoad);        
+AppRegistry.registerComponent('Hello', () => AImageDemo);        
