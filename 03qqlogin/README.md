@@ -1,4 +1,5 @@
 ### 这是仿照qq的登陆页面，注意android上面的代码和ios的不同，ios上插件比较多，兼容性比较好，我们主要看安卓的：
+![安卓图片](./login.jpg)
 ####1.TextInput下方的边框问题：
 &emsp;&emsp;这里我们用`underlineColorAndroid="transparent"`解决：
 ```
