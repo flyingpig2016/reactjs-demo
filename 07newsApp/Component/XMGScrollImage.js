@@ -132,7 +132,7 @@ var ScrollImage = React.createClass({
         var offSetX = e.nativeEvent.contentOffset.x;
         //2.求出当前页数
         var currentPage = Math.floor(offSetX / width);
-        console.log(currentPage);
+        // console.log(currentPage);
         //3.更新状态机，重新绘制ui
         this.setState({
             currentPage:currentPage,
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     },
     headerTextStyle:{
         position:'absolute',
-        bottom:0,
+        bottom:5,
         left:10,
         color:'#fff'
     },

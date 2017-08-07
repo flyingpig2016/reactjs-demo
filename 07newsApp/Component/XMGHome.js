@@ -17,11 +17,12 @@ import {
 } from 'react-native'; 
 import LocalData from '../LocalData.json';
 import ScrollImage from './XMGScrollImage';
+import NewsDetail from './XMGNewsDetail';
 var {width} = Dimensions.get('window');
 var Home = React.createClass({
     getDefaultProps(){
        return {
-          url_api: "http://c1.m.163.com/nc/article/headline/T1348647853363/0-20.html?from=toutiao&fn=2&passport=&devId=nTM86EPlcxZu09VdpTEh6aR3%2B%2FQX6x8vHBD3ne3k5bbgOrg%2FIP5DcguSDmtYyWbs&size=20&version=8.1&spever=false&net=wifi&lat=5OtqEKiivwW4K%2BGMt6DBdA%3D%3D&lon=jKlRVyYkSNti2wwsjGQHrw%3D%3D&ts=1463384311&sign=TtD7IZllDljVzBs2E4sa9fQyKTKF021w2EUC6qx1gEN48ErR02zJ6%2FKXOnxX046I&encryption=1&canal=appstore",
+          url_api: "http://c.m.163.com/nc/article/headline/T1348647853363/0-20.html",
           key_word: 'T1348647853363'
        }
     },
@@ -98,7 +99,7 @@ var Home = React.createClass({
   },
   renderRow(rowData){
     return(
-        <TouchableOpacity activeOpacity={0.5}>
+        <TouchableOpacity activeOpacity={0.5} onPress={()=>{this.pushToNewDetail(rowData)}}>
           <View style={styles.cellViewStyle}>
             {/*左边*/}  
             <Image source={{uri:rowData.imgsrc}} style={styles.imageStyle} />
@@ -114,6 +115,27 @@ var Home = React.createClass({
         </TouchableOpacity>
     )
   },
+  //跳转到新闻详情页 
+  pushToNewDetail(rowData){
+    const {navigator} = this.props; 
+    if(navigator){
+      /**页面间数据的传递 与将第二个页面如何将结果返回给第一个页面的方法 
+       *  
+       * 1.通过push,传递参数 
+       *   这里多出了一个 params 其实来自于<Navigator 里的一个方法的参数... 
+       *   id 
+       * 2.把上一个页面的实例或者回调方法，作为参数传递到当前页面来，在当前页面操作上一个页面的state 
+       */  
+      navigator.push({ //拿到当前页面的导航
+        title:rowData.title, //传到detail页面的标题 
+        name:'NewsDetail',
+        component : NewsDetail,
+        params:{
+          rowData:rowData,  //终完成了数据传递到Detail页面n
+        }
+      })
+    }
+  }
 
 });
 
@@ -123,6 +145,7 @@ const styles = StyleSheet.create({
     alignItems:'center',
     padding:10,
     borderBottomWidth:0.5,
+    borderColor:'#ccc'
   },
   rightViewStyle:{
     width:width-100,
@@ -131,12 +154,13 @@ const styles = StyleSheet.create({
     paddingRight:10,
   },
   imageStyle:{
-    width:90,
-    height:90
+    width:80,
+    height:80
   },
   titleStyle:{
-    fontSize:16,
+    fontSize:15,
     marginBottom:5,
+    fontWeight:'600'
   },
   subTitleStyle:{
     color:'grey',
