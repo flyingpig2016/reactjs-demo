@@ -14,25 +14,42 @@ import {
   TextInput,
   Image,
   Dimensions,
-  Platform
+  Platform,
+  ScrollView
 } from 'react-native';
 /*------导入外部组件类-----*/
 import HomeDetail from './XMGHomeDetail';
-
+import TopView from './XMGTopView';
+import HomeMiddleView from './XMGHomeMiddleView';
+import MiddleBottomView from './XMGMiddleBottomView';
+import dataArr from '../../LocalData/XMG_Home_D4.json';
+import ShopCenter from './XMGShopCenter';
+import BottomCommonCell from './XMGBottomCommonCell';
+import ShopCenterDetail from './XMGShopCenterDetail';
 var {width,height} = Dimensions.get('window');
 var Home = React.createClass({
   render() {
     return (
       <View style={styles.container}>
         {/*首页导航条*/}
-        <View>
-          {this.renderNavBar()}        
-        </View>
-        <TouchableOpacity onPress={()=>{this.pushToDetail()}}>
-          <Text>
-            首页 
-          </Text>
-        </TouchableOpacity>
+          {this.renderNavBar()}  
+          {/*首页主要内容*/}      
+            {/*头部的组件*/}
+          <ScrollView 
+            showsHorizontalScrollIndicator ={false}
+          >
+            <TopView />
+            {/*中间的内容*/}
+            <HomeMiddleView />
+            {/*下半部分*/}
+            <MiddleBottomView 
+              popTopHome = {(data)=>{this.pushToDetail(data)}}
+            />
+            {/*购物中心*/}
+            <ShopCenter 
+              popTopHomeView = {(url)=>{this.pushToShopCenterDetail(url)}}
+            />
+          </ScrollView> 
       </View>
     );
   },
@@ -57,11 +74,24 @@ var Home = React.createClass({
       </View>
     )
   },
-  pushToDetail(){
+  pushToShopCenterDetail(url){
     this.props.navigator.push(
       {
+        component : ShopCenterDetail,  
+        passProps : {
+          'url' : 'url'
+        }
+      }
+    )
+  },
+  pushToDetail(data){
+    this.props.navigator.push(
+      {
+        title : 'home详情页',
         component:HomeDetail, //要跳转的版块
-        title : 'home详情页'
+        passProps : {
+          tplurl:data
+        }
       }
     )
   }
@@ -70,7 +100,7 @@ var Home = React.createClass({
 const styles = StyleSheet.create({
   container: {
     flex: 1,  
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#e8e8e8',
   },
   welcome: {
     fontSize: 20,

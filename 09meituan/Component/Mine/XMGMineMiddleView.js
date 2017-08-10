@@ -34,11 +34,12 @@ var MineMiddleView = React.createClass({
             //创建组件装入数组
             itemArr.push(
                 <TouchableOpacity  
+                    key={i}
                     activeOpacity={0.3}
                     style={styles.middleTouchStyle}
                 >
                     <View>
-                        <InnerView key={i} iconName={data.iconName} title={data.title} />
+                        <InnerView  iconName={data.iconName} title={data.title} />
                     </View>
                 </TouchableOpacity>
             )

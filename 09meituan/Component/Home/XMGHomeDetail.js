@@ -14,12 +14,18 @@ import {
 } from 'react-native';
 
 var HomeDetail = React.createClass({
+  getDefaultProps(){
+    return{
+      tplurl:'',
+    }
+  },
   render() {
+    alert(this.props.tplurl)
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={()=>{this.popToHome()}}>
           <Text>
-            Detail
+              点我返回
           </Text>
         </TouchableOpacity>
       </View>
