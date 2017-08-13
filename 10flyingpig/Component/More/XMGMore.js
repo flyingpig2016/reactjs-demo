@@ -16,6 +16,7 @@ import {
   ScrollView
 } from 'react-native';
 import CommonCell from './XMGCommonCell';
+import ScanDetail from '../Home/XMGShowScanDetail';
 var Mine = React.createClass({
   getInitialState(){
     return {
@@ -28,8 +29,8 @@ var Mine = React.createClass({
         {/*导航条*/}
         {this.renderNavBar()}
         <ScrollView>
-          <View style={{marginTop:15}}>
-            <CommonCell title='扫一扫' />
+          <View style={{marginTop:15}} >
+            <CommonCell title='扫一扫' eventPress={this.pushToScan} /> 
           </View>
           
           <View style={{marginTop:15}}>
@@ -70,6 +71,13 @@ var Mine = React.createClass({
         </ScrollView>
       </View>
     );
+  },
+  pushToScan(){
+    this.props.navigator.push(
+      {
+        component:ScanDetail
+      }
+    )
   },
   renderNavBar(){
     return (

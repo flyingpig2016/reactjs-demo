@@ -22,7 +22,7 @@ import Home from '../Home/XMGHome';
 import Shop from '../Shop/XMGShop';
 import More from '../More/XMGMore';
 import Mine from '../Mine/XMGMine';
-var {width} = Dimensions.get('window');
+var {width,height} = Dimensions.get('window');
 var Main = React.createClass({
   getInitialState(){
     return {
@@ -31,7 +31,7 @@ var Main = React.createClass({
   },
   render() {
     return (
-        <TabNavigator>
+        <TabNavigator style={styles.navigatorView}>
           {/*首页*/}
           {this.renderTabBarItem('首页','icon_tabbar_homepage','icon_tabbar_homepage_selected','Home','Home',Home)}
           {/*商家*/}
@@ -41,13 +41,12 @@ var Main = React.createClass({
           {/*更多*/}
           {this.renderTabBarItem('更多','icon_tabbar_misc','icon_tabbar_misc_selected','More','More',More,10)}
         </TabNavigator>
-
     );
 
   },
   renderTabBarItem(title,iconName,SelectedIconName,selectedTab,componentName,component,badgeText){
     return (
-        <TabNavigator.Item
+        <TabNavigator.Item 
           title= {title} //需要大括号
           renderIcon={() => <Image style={styles.iconStyle} source={{uri:iconName}} />}  
           renderSelectedIcon={() => <Image style={styles.iconStyle} source={{uri:SelectedIconName}} />}
@@ -80,14 +79,13 @@ var Main = React.createClass({
         </TabNavigator.Item>
     )
   }
-})
+}) 
 
 const styles = StyleSheet.create({
-  navigatorView:{
-    flex:1,
-    backgroundColor:"orange",
+  navigatorView:{    
+    height:height,
   },
-  navigatorStyle: {
+  navigatorStyle: {  
     flex:1,
     backgroundColor: '#F5FCFF',
   },
@@ -97,7 +95,7 @@ const styles = StyleSheet.create({
     height:Platform.OS === 'ios' ? 30 : 25,
   },
   selectedTitleStyle:{
-    color:'orange'
-  }
+    color:'orange',
+  },
 });
 module.exports = Main;

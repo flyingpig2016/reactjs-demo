@@ -11,13 +11,15 @@ import {
   Text,
   View,
   Image,
+  Dimensions
 } from 'react-native';
 /**导入外部组件 */
 import Main from '../Main/XMGMain';
+var {width,height} = Dimensions.get('window');
 var Launch = React.createClass({
   render() {
     return ( 
-        <Image source={{uri:'launchimage'}} style={styles.launchImgStyle} /> 
+        <Image source={{uri:'launchimage'}} style={styles.launchImgStyle} style={{width:width,height:height}} /> 
     );
   },
   componentDidMount(){

@@ -22,7 +22,7 @@ import CommonView from './XMGMiddCommonView';
 import Home_D4 from '../../LocalData/XMG_Home_D4.json'
 var {width,height} = Dimensions.get('window');
 var MiddleBottomView = React.createClass({
-    getDefaultProps(){
+    getDefaultProps(){ 
         return {
             popTopHome: null,
         }

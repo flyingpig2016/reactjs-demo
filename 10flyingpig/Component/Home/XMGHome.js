@@ -22,15 +22,14 @@ import HomeDetail from './XMGHomeDetail';
 import TopView from './XMGTopView';
 import HomeMiddleView from './XMGHomeMiddleView';
 import MiddleBottomView from './XMGMiddleBottomView';
-import dataArr from '../../LocalData/XMG_Home_D4.json';
 import ShopCenter from './XMGShopCenter';
-import BottomCommonCell from './XMGBottomCommonCell';
 import ShopCenterDetail from './XMGShopCenterDetail';
 import GeustLike from './XMGGeustLike';
 import Map from './XMGMap';
+import ShowScanDetail from './XMGShowScanDetail';
 var {width,height} = Dimensions.get('window');
 var Home = React.createClass({
-  render() {
+  render() { 
     return (
       <View style={styles.container}>
         {/*首页导航条*/}
@@ -43,7 +42,7 @@ var Home = React.createClass({
             <TopView />
             {/*中间的内容*/}
             <HomeMiddleView />
-            {/*下半部分*/}
+            {/*下半部分*/} 
             <MiddleBottomView 
               popTopHome = {(data)=>{this.pushToDetail(data)}}
             />
@@ -71,10 +70,22 @@ var Home = React.createClass({
         />
         {/*右边*/}
         <View style={styles.topRIghtImgStyle}>
-          <Image source={{uri:'icon_homepage_message'}} style={styles.navRightImgStyle} /> 
-          <Image source={{uri:'icon_homepage_scan'}} style={styles.navRightImgStyle} />
+          <TouchableOpacity>
+            <Image source={{uri:'icon_homepage_message'}} style={styles.navRightImgStyle} /> 
+          </TouchableOpacity>
+          {/*扫一扫*/}
+          <TouchableOpacity  onPress={this.pushToScan} style={{marginLeft:10}}>
+            <Image source={{uri:'icon_homepage_scan'}} style={styles.navRightImgStyle}/>
+          </TouchableOpacity>
         </View>
       </View>
+    )
+  },
+  pushToScan(){
+    this.props.navigator.push(  
+      {
+        component:ShowScanDetail,
+      }
     )
   },
   pushToMap(){
@@ -92,7 +103,7 @@ var Home = React.createClass({
       {
         component : ShopCenterDetail,  
         passProps : {
-          'url' : this.dealWidthUrl(url)
+          url : this.dealWidthUrl(url)
         }
       }
     )
@@ -143,7 +154,6 @@ const styles = StyleSheet.create({
   navRightImgStyle:{
     width:Platform.OS=='ios' ? 28 : 25,
     height:Platform.OS=='ios' ? 28 : 25,
-    marginLeft:10
   },
 
 });
