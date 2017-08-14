@@ -162,7 +162,7 @@ class Main extends Component {
               }
               // 页面之间跳转时候的动画手势，可以看这个目录:node_modules/react-native/Libraries/CustomComponents/Navigator/NavigatorSceneConfigs.js
               configureScene={(route) => {
-                  return Navigator.SceneConfigs.HorizontalSwipeJump;
+                  return Navigator.SceneConfigs.FloatFromBottom;
               }}
               //route包含的是initial的时候传递的name和component
               //navigator是一个我们需要用的Navigator的对象
@@ -189,7 +189,7 @@ class Main extends Component {
               }
               // 页面之间跳转时候的动画手势，可以看这个目录:node_modules/react-native/Libraries/CustomComponents/Navigator/NavigatorSceneConfigs.js
               configureScene={(route) => {
-                  return Navigator.SceneConfigs.VerticalDownSwipeJump;
+                  return Navigator.SceneConfigs.FloatFromBottom;
               }}
               //route包含的是initial的时候传递的name和component
               //navigator是一个我们需要用的Navigator的对象
@@ -216,7 +216,7 @@ class Main extends Component {
               }
               // 页面之间跳转时候的动画手势，可以看这个目录:node_modules/react-native/Libraries/CustomComponents/Navigator/NavigatorSceneConfigs.js
               configureScene={(route) => {
-                  return Navigator.SceneConfigs.HorizontalSwipeJump;
+                  return Navigator.SceneConfigs.FloatFromBottom;
               }}
               //route包含的是initial的时候传递的name和component
               //navigator是一个我们需要用的Navigator的对象
@@ -243,7 +243,7 @@ class Main extends Component {
               }
               // 页面之间跳转时候的动画手势，可以看这个目录:node_modules/react-native/Libraries/CustomComponents/Navigator/NavigatorSceneConfigs.js
               configureScene={(route) => {
-                  return Navigator.SceneConfigs.HorizontalSwipeJump;
+                  return Navigator.SceneConfigs.FloatFromBottom;
               }}
               //route包含的是initial的时候传递的name和component
               //navigator是一个我们需要用的Navigator的对象
